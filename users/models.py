@@ -3,7 +3,7 @@ from django.db import models
 
 
 # Create your models here.
-class User(AbstractUser):
+class User(AbstractUser):  ## inherit AbstractUser class
     """ Custom User Model """
 
     GENDER_MALE = "male"
@@ -23,20 +23,17 @@ class User(AbstractUser):
     CURRENCY_KRW = "krw"
     CURRENCY_CHOICES = {(CURRENCY_KRW, "KRW"), (CURRENCY_USD, "USD")}
 
-    avatar = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(blank=True)
     gender = models.CharField(
-        choices=GENDER_CHOICES, max_length=10, null=True
+        choices=GENDER_CHOICES,
+        max_length=10,
     )  ## one line width maximum
     bio = models.TextField(default="", blank=True)  ##multiple line is available
-    # bio = models.TextField(null=TRUE) // null value is posible in db
+    # bio = models.TextField( // null value is posible in db
 
-    birthdate = models.DateField(null=True, blank=True)
-    language = models.CharField(
-        choices=LANGUAGE_CHOICES, null=True, blank=True, max_length=10
-    )
+    birthdate = models.DateField(blank=True, null=True)
+    language = models.CharField(choices=LANGUAGE_CHOICES, blank=True, max_length=10)
 
-    currency = models.CharField(
-        choices=CURRENCY_CHOICES, max_length=10, null=True, blank=True
-    )
+    currency = models.CharField(choices=CURRENCY_CHOICES, max_length=10, blank=True)
 
     superhost = models.BooleanField(default=False)
