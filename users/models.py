@@ -37,3 +37,6 @@ class User(AbstractUser):  ## inherit AbstractUser class
     currency = models.CharField(choices=CURRENCY_CHOICES, max_length=10, blank=True)
 
     superhost = models.BooleanField(default=False)
+
+    # def __str__(self):
+    #    return self.username

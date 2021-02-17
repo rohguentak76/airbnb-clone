@@ -45,6 +45,20 @@ class HouseRule(AbstractItem):
         verbose_name = "House Rule"
 
 
+class Photo(core_models.TimeStampedModel):
+    """photo model definition"""
+
+    caption = models.CharField(max_length=80)
+    file = models.ImageField()
+    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.caption
+
+    class Meta:
+        verbose_name = "Photoe"
+
+
 class Room(core_models.TimeStampedModel):
     """ Room Model Definition """
 
@@ -61,12 +75,13 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
-    host = models.ForeignKey(
-        user_models.User, on_delete=models.CASCADE
-    )  # connect other model for this model , rooms point one user(ForignKey do)
+    host = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    # host = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    # string is possible for import
+    # connect other model for this model , rooms point one user(ForignKey do)
     room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
-    Amenities = models.ManyToManyField(Amenity, blank=True)
-    facilities = models.ManyToManyField(Facility, blank=True)
+    Amenities = models.ManyToManyField("Amenity", blank=True)
+    facilities = models.ManyToManyField("Facility", blank=True)
     house_rule = models.ManyToManyField(HouseRule, blank=True)
 
     def __str__(self):
