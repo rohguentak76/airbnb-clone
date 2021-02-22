@@ -23,7 +23,7 @@ class User(AbstractUser):  ## inherit AbstractUser class
     CURRENCY_KRW = "krw"
     CURRENCY_CHOICES = {(CURRENCY_KRW, "KRW"), (CURRENCY_USD, "USD")}
 
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(blank=True, upload_to="avatars")
     gender = models.CharField(
         choices=GENDER_CHOICES,
         max_length=10,
