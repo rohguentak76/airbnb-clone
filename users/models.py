@@ -9,19 +9,25 @@ class User(AbstractUser):  ## inherit AbstractUser class
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"
-    GENDER_CHOICES = {
+    GENDER_CHOICES = (
         (GENDER_MALE, "male"),
         (GENDER_FEMALE, "female"),
         (GENDER_OTHER, "other"),
-    }
+    )
 
     LANGUAGE_ENGLISH = "english"
     LANGUAGE_KOREAN = "korean"
-    LANGUAGE_CHOICES = {(LANGUAGE_ENGLISH, "English"), (LANGUAGE_KOREAN, "Korean")}
+    LANGUAGE_CHOICES = (
+        (LANGUAGE_ENGLISH, "English"),
+        (LANGUAGE_KOREAN, "Korean"),
+    )
 
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "krw"
-    CURRENCY_CHOICES = {(CURRENCY_KRW, "KRW"), (CURRENCY_USD, "USD")}
+    CURRENCY_CHOICES = (
+        (CURRENCY_KRW, "KRW"),
+        (CURRENCY_USD, "USD"),
+    )
 
     avatar = models.ImageField(blank=True, upload_to="avatars")
     gender = models.CharField(
